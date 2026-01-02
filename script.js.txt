@@ -1,0 +1,384 @@
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Create floating hearts in background
+    createFloatingHearts(25);
+    
+    // Initialize love timer
+    initializeLoveTimer();
+    
+    // Initialize interactive heart
+    initializeInteractiveHeart();
+    
+    // Initialize gallery
+    initializeGallery();
+    
+    // Initialize quote slider
+    initializeQuoteSlider();
+    
+    // Initialize add message button
+    initializeAddMessageButton();
+});
+
+// Create floating hearts in background
+function createFloatingHearts(count) {
+    const heartBackground = document.getElementById('heartBackground');
+    
+    for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = getRandomHeartEmoji();
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.top = `${Math.random() * 100}%`;
+        heart.style.animationDelay = `${Math.random() * 5}s`;
+        heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+        heart.style.opacity = `${Math.random() * 0.5 + 0.3}`;
+        heartBackground.appendChild(heart);
+    }
+}
+
+// Get random heart emoji
+function getRandomHeartEmoji() {
+    const hearts = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💖', '💗', '💓', '💞', '💕', '💘', '💝'];
+    return hearts[Math.floor(Math.random() * hearts.length)];
+}
+
+// Love timer - set your anniversary date here (YYYY, MM, DD)
+const anniversary = new Date(2023, 5, 15); // June 15, 2023 (Month is 0-indexed)
+
+function initializeLoveTimer() {
+    updateLoveTimer();
+    // Update timer every second
+    setInterval(updateLoveTimer, 1000);
+}
+
+function updateLoveTimer() {
+    const now = new Date();
+    const diff = now - anniversary;
+    
+    const years = now.getFullYear() - anniversary.getFullYear();
+    const months = (years * 12) + (now.getMonth() - anniversary.getMonth());
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    // Update DOM elements
+    document.getElementById('years').textContent = years;
+    document.getElementById('months').textContent = months;
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('seconds').textContent = seconds;
+    
+    // Add animation to timer boxes
+    const timerBoxes = document.querySelectorAll('.timer-box');
+    timerBoxes.forEach(box => {
+        box.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+            box.style.transform = 'scale(1)';
+        }, 300);
+    });
+}
+
+// Interactive heart button
+function initializeInteractiveHeart() {
+    const heartButton = document.getElementById('heartButton');
+    const heartMessage = document.getElementById('heartMessage');
+    const heartAnimation = document.getElementById('heartAnimation');
+    const loveCountElement = document.getElementById('loveCount');
+    
+    const loveMessages = [
+        "Fiza, you are the love of my life! 💖",
+        "Every day with you is a blessing! 🌟",
+        "My heart beats only for you! 💓",
+        "You make my world beautiful! 🌸",
+        "I fall in love with you more every day! 💕",
+        "You are my sunshine on cloudy days! ☀️",
+        "My love for you grows endlessly! 🌹",
+        "You are my greatest adventure! 🚀",
+        "Forever and always, my love! 💑",
+        "You complete me in every way! ✨",
+        "Your smile is my favorite view! 😊",
+        "I'm the luckiest person to have you! 🍀"
+    ];
+    
+    let messageIndex = 0;
+    let loveCount = 0;
+    
+    heartButton.addEventListener('click', function() {
+        // Animate the button
+        heartButton.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            heartButton.style.transform = 'scale(1)';
+        }, 200);
+        
+        // Create pulse animation
+        heartAnimation.style.opacity = '1';
+        heartAnimation.style.boxShadow = '0 0 0 0 rgba(255, 77, 126, 0.7)';
+        heartAnimation.style.animation = 'none';
+        
+        setTimeout(() => {
+            heartAnimation.style.animation = 'pulse 1s';
+        }, 10);
+        
+        // Change the message
+        heartMessage.textContent = loveMessages[messageIndex];
+        messageIndex = (messageIndex + 1) % loveMessages.length;
+        
+        // Update love counter
+        loveCount++;
+        loveCountElement.textContent = loveCount;
+        
+        // Create floating hearts effect
+        createClickHearts(15);
+        
+        // Add romantic sound effect (optional - can be enabled)
+        // playHeartSound();
+    });
+}
+
+// Create floating hearts on click
+function createClickHearts(count) {
+    for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = getRandomHeartEmoji();
+        heart.style.position = 'fixed';
+        heart.style.fontSize = `${Math.random() * 25 + 15}px`;
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.top = '100vh';
+        heart.style.zIndex = '9999';
+        heart.style.pointerEvents = 'none';
+        heart.style.opacity = '0.9';
+        heart.style.transition = 'all 1.5s ease-out';
+        
+        document.body.appendChild(heart);
+        
+        // Animate the heart
+        setTimeout(() => {
+            heart.style.top = `${Math.random() * 50}vh`;
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.opacity = '0';
+            heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+        }, 10);
+        
+        // Remove heart after animation
+        setTimeout(() => {
+            if (heart.parentNode) {
+                document.body.removeChild(heart);
+            }
+        }, 1500);
+    }
+}
+
+// Gallery initialization
+function initializeGallery() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const message = this.getAttribute('data-message');
+            
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 200);
+            
+            // Show message
+            showLoveMessage(message);
+        });
+    });
+}
+
+// Show love message
+function showLoveMessage(message) {
+    // Create message element
+    const messageEl = document.createElement('div');
+    messageEl.className = 'floating-message';
+    messageEl.textContent = message;
+    messageEl.style.position = 'fixed';
+    messageEl.style.top = '50%';
+    messageEl.style.left = '50%';
+    messageEl.style.transform = 'translate(-50%, -50%)';
+    messageEl.style.background = 'rgba(255, 255, 255, 0.95)';
+    messageEl.style.padding = '20px 30px';
+    messageEl.style.borderRadius = '15px';
+    messageEl.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+    messageEl.style.zIndex = '10000';
+    messageEl.style.fontSize = '1.3rem';
+    messageEl.style.color = '#a8325a';
+    messageEl.style.fontWeight = '600';
+    messageEl.style.textAlign = 'center';
+    messageEl.style.border = '3px solid #ff4d7e';
+    messageEl.style.maxWidth = '80%';
+    
+    document.body.appendChild(messageEl);
+    
+    // Remove message after 3 seconds
+    setTimeout(() => {
+        messageEl.style.opacity = '0';
+        messageEl.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => {
+            if (messageEl.parentNode) {
+                document.body.removeChild(messageEl);
+            }
+        }, 500);
+    }, 3000);
+}
+
+// Quote slider initialization
+function initializeQuoteSlider() {
+    const quotes = document.querySelectorAll('.quote');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    let currentSlide = 0;
+    
+    // Function to show slide
+    function showSlide(index) {
+        // Hide all slides
+        quotes.forEach(quote => {
+            quote.classList.remove('active');
+        });
+        
+        // Remove active class from all dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+        
+        // Show current slide and activate dot
+        quotes[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        currentSlide = index;
+    }
+    
+    // Next slide
+    function nextSlide() {
+        let nextIndex = currentSlide + 1;
+        if (nextIndex >= quotes.length) nextIndex = 0;
+        showSlide(nextIndex);
+    }
+    
+    // Previous slide
+    function prevSlide() {
+        let prevIndex = currentSlide - 1;
+        if (prevIndex < 0) prevIndex = quotes.length - 1;
+        showSlide(prevIndex);
+    }
+    
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // Dot click events
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+        });
+    });
+    
+    // Auto slide every 5 seconds
+    setInterval(nextSlide, 5000);
+}
+
+// Add message button initialization
+function initializeAddMessageButton() {
+    const addMessageBtn = document.getElementById('addMessageBtn');
+    
+    addMessageBtn.addEventListener('click', function() {
+        const messages = [
+            "My love for you grows stronger every day! 💖",
+            "You are the best thing that ever happened to me! 🌟",
+            "Being with you feels like a beautiful dream! 💭",
+            "I can't imagine my life without you! 💕",
+            "You make every moment special! ✨",
+            "My heart belongs to you forever! 💘",
+            "You are my happily ever after! 👑",
+            "Together we can conquer the world! 🌍",
+            "Your love is my greatest treasure! 💎",
+            "I'm so grateful to have you in my life! 🙏"
+        ];
+        
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        
+        // Create new message element
+        const messagesContainer = document.querySelector('.messages-container');
+        const newMessage = document.createElement('div');
+        newMessage.className = 'message';
+        newMessage.innerHTML = `
+            <div class="message-author">New Love Note <i class="fas fa-heart"></i></div>
+            <p class="message-text">"${randomMessage}"</p>
+        `;
+        
+        // Add to container with fade-in effect
+        newMessage.style.opacity = '0';
+        newMessage.style.transform = 'translateY(20px)';
+        messagesContainer.appendChild(newMessage);
+        
+        // Trigger animation
+        setTimeout(() => {
+            newMessage.style.transition = 'all 0.5s ease';
+            newMessage.style.opacity = '1';
+            newMessage.style.transform = 'translateY(0)';
+        }, 10);
+        
+        // Animate the button
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 200);
+        
+        // Show confirmation
+        showLoveMessage("New love note added! 💝");
+    });
+}
+
+// Add CSS for pulse animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(255, 77, 126, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 20px rgba(255, 77, 126, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(255, 77, 126, 0);
+        }
+    }
+    
+    .floating-message {
+        animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translate(-50%, -40%); }
+        to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+`;
+document.head.appendChild(style);
+
+// Optional: Add sound effect for heart click (uncomment to enable)
+/*
+function playHeartSound() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.value = 523.25; // C5 note
+    oscillator.type = 'sine';
+    
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.5);
+}
+*/

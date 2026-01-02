@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talib ❤️ Fiza - Our Love Story</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background floating hearts -->
+    <div class="heart-bg" id="heartBackground"></div>
+    
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1 class="couple-names">Talib ❤️ Fiza</h1>
+            <p class="tagline">Two hearts, one soul. A love story written in the stars ✨</p>
+            <div class="love-emoji-header">💑💖💕💓💗💞💝</div>
+        </header>
+        
+        <!-- Love Timer Section -->
+        <section class="love-timer">
+            <h2 class="timer-title">💑 Our Time Together 💑</h2>
+            <div class="timer-container">
+                <div class="timer-box">
+                    <div class="timer-value" id="years">0</div>
+                    <div class="timer-label">Years</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="months">0</div>
+                    <div class="timer-label">Months</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="days">0</div>
+                    <div class="timer-label">Days</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="hours">0</div>
+                    <div class="timer-label">Hours</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="minutes">0</div>
+                    <div class="timer-label">Minutes</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="seconds">0</div>
+                    <div class="timer-label">Seconds</div>
+                </div>
+            </div>
+            <p class="timer-note">Counting every moment of our beautiful journey together 💕</p>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <h2 class="section-title">💖 Our Beautiful Memories 💖</h2>
+            <div class="gallery">
+                <div class="gallery-item" data-message="This sunset reminds me of our first date! 🌅">
+                    <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Romantic Sunset" class="gallery-img">
+                    <div class="gallery-caption">Sunset Dreams 🌅</div>
+                </div>
+                <div class="gallery-item" data-message="Holding you close is my favorite place to be! 💑">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Together Forever" class="gallery-img">
+                    <div class="gallery-caption">Together Forever 💑</div>
+                </div>
+                <div class="gallery-item" data-message="Every day with you is an adventure! 🌟">
+                    <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Love Adventure" class="gallery-img">
+                    <div class="gallery-caption">Love Adventure 🌟</div>
+                </div>
+                <div class="gallery-item" data-message="Your smile makes everything beautiful! 🍬">
+                    <img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sweet Moments" class="gallery-img">
+                    <div class="gallery-caption">Sweet Moments 🍬</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Love Messages Section -->
+        <section class="love-messages">
+            <h2 class="section-title">💌 Love Messages 💌</h2>
+            <div class="messages-container">
+                <div class="message">
+                    <div class="message-author">From Talib to Fiza <i class="fas fa-heart"></i></div>
+                    <p class="message-text">"My dearest Fiza, every moment with you is a treasure. Your smile lights up my world, and your love gives me strength. I'm forever grateful for you. ❤️"</p>
+                </div>
+                <div class="message">
+                    <div class="message-author">From Fiza to Talib <i class="fas fa-heart"></i></div>
+                    <p class="message-text">"My darling Talib, you are my greatest adventure and my safest harbor. With you, I've found a love that feels like home. Forever yours. 💕"</p>
+                </div>
+                <div class="message">
+                    <div class="message-author">Our Promise <i class="fas fa-heart"></i></div>
+                    <p class="message-text">"Our love is a journey that started at hello and has no end. Through every challenge and every joy, we grow stronger together. 💑"</p>
+                </div>
+            </div>
+            <div class="add-message">
+                <button id="addMessageBtn">Add Your Love Message 💝</button>
+            </div>
+        </section>
+        
+        <!-- Interactive Heart Section -->
+        <section class="interactive-section">
+            <h2 class="section-title">💕 Send Love to Fiza 💕</h2>
+            <div class="heart-container">
+                <button class="heart-btn" id="heartButton">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <div class="heart-animation" id="heartAnimation"></div>
+            </div>
+            <div class="heart-message" id="heartMessage">Click the heart to send love! 💖</div>
+            <div class="love-counter">
+                <span>Love Sent: </span>
+                <span id="loveCount">0</span>
+                <span> ❤️</span>
+            </div>
+        </section>
+        
+        <!-- Love Quote Section -->
+        <section class="quote-section">
+            <h2 class="section-title">✨ Our Favorite Quotes ✨</h2>
+            <div class="quote-slider">
+                <div class="quote active">
+                    <p>"I love you not only for what you are, but for what I am when I am with you."</p>
+                    <div class="quote-author">- Elizabeth Barrett Browning</div>
+                </div>
+                <div class="quote">
+                    <p>"You are the source of my joy, the center of my world, and the whole of my heart."</p>
+                    <div class="quote-author">- Talib to Fiza</div>
+                </div>
+                <div class="quote">
+                    <p>"In your eyes, I found my home. In your heart, I found my love."</p>
+                    <div class="quote-author">- Fiza to Talib</div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-hearts">❤️🧡💛💚💙💜</div>
+        <p class="footer-message">Made with infinite love by Talib for his beautiful Fiza 💖</p>
+        <p class="footer-date">Our love story continues to grow every single day ✨</p>
+        <div class="footer-emoji">💑💞💗💓💕💖💘</div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
